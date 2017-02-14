@@ -1,5 +1,5 @@
 {
-  "name": "node-zookeeper-client-scalajs",
+  "name": "node-zookeeper-client-sjs",
   "version": "0.2.2",
   "private": true,
   "dependencies": {
