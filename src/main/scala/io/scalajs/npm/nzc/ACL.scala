@@ -1,18 +1,24 @@
 package io.scalajs.npm.nzc
 
 import scala.scalajs.js
-import scala.scalajs.js.annotation.JSName
+import scala.scalajs.js.annotation.{JSImport, JSName}
 
 /**
-  * Zookeeper ACL
+  * Access Control List (ACL)
   * @author lawrence.daniels@gmail.com
   */
 @js.native
-trait ACL extends js.Object {}
+@JSImport("node-zookeeper-client", "ACL")
+class ACL(permission: js.Any, id: js.Any) extends js.Object
 
 /**
-  * ACL
+  * ACL Singleton
+  * @author lawrence.daniels@gmail.com
   */
 @js.native
-@JSName("ACL")
-object ACL extends ACLClass
+@JSImport("node-zookeeper-client", "ACL")
+object ACL extends js.Object {
+
+  def toRecord: js.Any = js.native
+
+}

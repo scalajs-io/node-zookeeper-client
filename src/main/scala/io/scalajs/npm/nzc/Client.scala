@@ -1,7 +1,7 @@
 package io.scalajs.npm.nzc
 
 import io.scalajs.nodejs.buffer.Buffer
-import io.scalajs.util.ScalaJsHelper._
+import io.scalajs.util.PromiseHelper._
 
 import scala.scalajs.js
 
@@ -208,26 +208,26 @@ object Client {
       */
     @inline
     def getChildrenFuture(path: String, watcher: Watcher) =
-      futureCallbackE1[js.Error, js.Array[String]](client.getChildren(path, watcher, _))
+      promiseWithError1[js.Error, js.Array[String]](client.getChildren(path, watcher, _))
 
     /**
       * @see [[Client.getChildren()]]
       */
     @inline
-    def getChildrenFuture(path: String) = futureCallbackE1[js.Error, js.Any](client.getChildren(path, _))
+    def getChildrenFuture(path: String) = promiseWithError1[js.Error, js.Any](client.getChildren(path, _))
 
     /**
       * @see [[Client.getData()]]
       */
     @inline
     def getDataFuture[T](path: String, watcher: Watcher) =
-      futureCallbackE1[js.Error, js.Array[T]](client.getChildren(path, watcher, _))
+      promiseWithError1[js.Error, js.Array[T]](client.getChildren(path, watcher, _))
 
     /**
       * @see [[Client.getData()]]
       */
     @inline
-    def getDataFuture[T](path: String) = futureCallbackE1[js.Error, js.Array[T]](client.getChildren(path, _))
+    def getDataFuture[T](path: String) = promiseWithError1[js.Error, js.Array[T]](client.getChildren(path, _))
 
     /**
       * Client is connected and ready.

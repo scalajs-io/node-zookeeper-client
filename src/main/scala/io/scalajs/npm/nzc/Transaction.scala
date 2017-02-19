@@ -1,9 +1,10 @@
 package io.scalajs.npm.nzc
 
+import io.scalajs.nodejs
 import io.scalajs.nodejs.buffer.Buffer
-import io.scalajs.util.ScalaJsHelper._
-import io.scalajs.util.ScalaJsHelper
+import io.scalajs.util.PromiseHelper._
 
+import scala.concurrent.Promise
 import scala.scalajs.js
 
 /**
@@ -25,7 +26,7 @@ trait Transaction extends js.Object {
     * Execute the transaction atomically.
     * @example commit(callback): void
     */
-  def commit(callback: js.Function2[Exception, js.Any, Any]): Unit = js.native
+  def commit(callback: js.Function2[nodejs.Error, js.Any, Any]): Unit = js.native
 
   /**
     * Add a create operation with given path, data, acls and mode.
@@ -81,7 +82,7 @@ object Transaction {
       * @see [[Transaction.commit()]]
       */
     @inline
-    def commitFuture() = futureCallbackE1[Exception, js.Any](transaction.commit)
+    def commitFuture(): Promise[js.Any] = promiseWithError1[nodejs.Error, js.Any](transaction.commit)
 
   }
 
