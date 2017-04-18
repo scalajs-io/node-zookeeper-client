@@ -1,6 +1,6 @@
 {
   "name": "node-zookeeper-client-sjs",
-  "version": "0.4.0-pre3",
+  "version": "0.4.0-pre4",
   "private": true,
   "dependencies": {
     "node-zookeeper-client": "^0.2.2",
