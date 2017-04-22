@@ -1,7 +1,7 @@
 package io.scalajs.npm.nzc
 
 import scala.scalajs.js
-import scala.scalajs.js.annotation.JSName
+import scala.scalajs.js.annotation.JSGlobal
 
 /**
   * If the requested operation fails due to reason related to ZooKeeper, the error which is passed into callback
@@ -51,7 +51,7 @@ trait Exception extends js.Object {
   * @author lawrence.daniels@gmail.com
   */
 @js.native
-@JSName("Exception")
+@JSGlobal("Exception")
 object Exception extends js.Object {
   val OK: String                         = js.native
   val SYSTEM_ERROR: String               = js.native

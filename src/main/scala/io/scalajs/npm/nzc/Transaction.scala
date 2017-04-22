@@ -4,7 +4,7 @@ import io.scalajs.nodejs
 import io.scalajs.nodejs.buffer.Buffer
 import io.scalajs.util.PromiseHelper._
 
-import scala.concurrent.Promise
+import scala.concurrent.Future
 import scala.scalajs.js
 
 /**
@@ -82,7 +82,7 @@ object Transaction {
       * @see [[Transaction.commit()]]
       */
     @inline
-    def commitFuture(): Promise[js.Any] = promiseWithError1[nodejs.Error, js.Any](transaction.commit)
+    def commitFuture(): Future[js.Any] = promiseWithError1[nodejs.Error, js.Any](transaction.commit)
 
   }
 

@@ -1,7 +1,7 @@
 package io.scalajs.npm
 
 import scala.scalajs.js
-import scala.scalajs.js.annotation.JSName
+import scala.scalajs.js.annotation.JSGlobal
 
 /**
   * Zookeeper Package Object
@@ -10,7 +10,7 @@ import scala.scalajs.js.annotation.JSName
 package object nzc {
 
   @js.native
-  @JSName("STATES")
+  @JSGlobal("STATES")
   object STATES extends js.Array[State]
 
 }

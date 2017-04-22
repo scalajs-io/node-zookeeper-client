@@ -58,7 +58,7 @@ client.onceConnected(() => {
       else println(JSON.stringify(paths))
     
       val tasks = Future.sequence(paths.toSeq map { path =>
-        client.getDataFuture[String](path = s"/$path").future.map(path -> _)
+        client.getDataFuture[String](path = s"/$path").map(path -> _)
       })
     
       tasks foreach { tuples =>
@@ -110,7 +110,7 @@ client.connect()
 To add the `NodeZookeeperClient` binding to your project, add the following to your build.sbt:  
 
 ```sbt
-libraryDependencies += "io.scalajs.npm" %%% "node-zookeeper-client" % "0.4.0-pre4"
+libraryDependencies += "io.scalajs.npm" %%% "node-zookeeper-client" % "0.4.0-pre5"
 ```
 
 Optionally, you may add the Sonatype Repository resolver:

@@ -1,7 +1,7 @@
 package io.scalajs.npm.nzc
 
 import scala.scalajs.js
-import scala.scalajs.js.annotation.JSName
+import scala.scalajs.js.annotation.JSGlobal
 
 /**
   * Zookeeper State
@@ -35,7 +35,7 @@ trait State extends js.Object {
   * @author lawrence.daniels@gmail.com
   */
 @js.native
-@JSName("State")
+@JSGlobal("State")
 object State extends js.Object {
 
   /** Client is connected and ready. */

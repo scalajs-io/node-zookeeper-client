@@ -1,8 +1,10 @@
 package io.scalajs.npm.nzc
 
 import io.scalajs.nodejs.buffer.Buffer
+import io.scalajs.nodejs.events.IEventEmitter
 import io.scalajs.util.PromiseHelper._
 
+import scala.concurrent.Future
 import scala.scalajs.js
 
 /**
@@ -11,7 +13,7 @@ import scala.scalajs.js
   * @see [[https://github.com/alexguan/node-zookeeper-client]]
   */
 @js.native
-trait Client extends js.Object {
+trait Client extends IEventEmitter {
 
   /**
     * Add the specified scheme:auth information to this client.
@@ -145,16 +147,6 @@ trait Client extends js.Object {
   def mkdirp(path: String, callback: js.Function): Unit = js.native
 
   /**
-    * By default, we will consume messages from the last committed offset of the current group
-    * @param message  the given event message (e.g. "error")
-    * @param callback callback when new message comes
-    * @example consumer.on('message', function (message) { .. })
-    */
-  def on(message: String, callback: js.Function): Unit = js.native
-
-  def once(message: String, callback: js.Function): Unit = js.native
-
-  /**
     * @example void remove(path, [version], callback)
     */
   def remove(path: String, version: String, callback: js.Function): Unit = js.native
@@ -207,69 +199,75 @@ object Client {
       * @see [[Client.getChildren()]]
       */
     @inline
-    def getChildrenFuture(path: String, watcher: Watcher) =
+    def getChildrenFuture(path: String, watcher: Watcher): Future[js.Array[String]] = {
       promiseWithError1[js.Error, js.Array[String]](client.getChildren(path, watcher, _))
+    }
 
     /**
       * @see [[Client.getChildren()]]
       */
     @inline
-    def getChildrenFuture(path: String) = promiseWithError1[js.Error, js.Any](client.getChildren(path, _))
+    def getChildrenFuture(path: String): Future[js.Any] = {
+      promiseWithError1[js.Error, js.Any](client.getChildren(path, _))
+    }
 
     /**
       * @see [[Client.getData()]]
       */
     @inline
-    def getDataFuture[T](path: String, watcher: Watcher) =
+    def getDataFuture[T](path: String, watcher: Watcher): Future[js.Array[T]] = {
       promiseWithError1[js.Error, js.Array[T]](client.getChildren(path, watcher, _))
+    }
 
     /**
       * @see [[Client.getData()]]
       */
     @inline
-    def getDataFuture[T](path: String) = promiseWithError1[js.Error, js.Array[T]](client.getChildren(path, _))
+    def getDataFuture[T](path: String): Future[js.Array[T]] = {
+      promiseWithError1[js.Error, js.Array[T]](client.getChildren(path, _))
+    }
 
     /**
       * Client is connected and ready.
       */
     @inline
-    def onConnected(callback: js.Function) = client.on("connected", callback)
+    def onConnected(callback: js.Function): client.type = client.on("connected", callback)
 
     /**
       * Client is connected to a readonly server.
       */
     @inline
-    def onConnectedReadOnly(callback: js.Function) = client.on("connectedReadOnly", callback)
+    def onConnectedReadOnly(callback: js.Function): client.type = client.on("connectedReadOnly", callback)
 
     /**
       * The connection between client and server is dropped.
       */
     @inline
-    def onDisconnected(callback: js.Function) = client.on("disconnected", callback)
+    def onDisconnected(callback: js.Function): client.type = client.on("disconnected", callback)
 
     /**
       * The client session is expired.
       */
     @inline
-    def onExpired(callback: js.Function) = client.on("expired", callback)
+    def onExpired(callback: js.Function): client.type = client.on("expired", callback)
 
     /**
       * Failed to authenticate with the server.
       */
     @inline
-    def onAuthenticationFailed(callback: js.Function) = client.on("authenticationFailed", callback)
+    def onAuthenticationFailed(callback: js.Function): client.type = client.on("authenticationFailed", callback)
 
     /**
       * @see [[Client.once()]]
       */
     @inline
-    def onceConnected(callback: js.Function) = client.once("connected", callback)
+    def onceConnected(callback: js.Function): client.type = client.once("connected", callback)
 
     /**
       * @see [[Client.on()]]
       */
     @inline
-    def onState(callback: js.Function) = client.on("state", callback)
+    def onState(callback: js.Function): client.type = client.on("state", callback)
 
   }
 

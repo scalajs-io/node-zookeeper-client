@@ -29,7 +29,7 @@ class ClientTest extends FunSpec {
               else info(JSON.stringify(paths))
 
               val tasks = Future.sequence(paths.toSeq map { path =>
-                client.getDataFuture[String](path = s"/$path").future.map(path -> _)
+                client.getDataFuture[String](path = s"/$path").map(path -> _)
               })
 
               tasks foreach { tuples =>
