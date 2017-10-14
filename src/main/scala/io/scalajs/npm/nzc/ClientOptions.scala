@@ -1,7 +1,7 @@
 package io.scalajs.npm.nzc
 
 import scala.scalajs.js
-import scala.scalajs.js.annotation.ScalaJSDefined
+
 
 /**
   * Zookeeper Client Options
@@ -10,7 +10,7 @@ import scala.scalajs.js.annotation.ScalaJSDefined
   * @param retries        The number of retry attempts for connection loss exception.
   * @author lawrence.daniels@gmail.com
   */
-@ScalaJSDefined
+
 class ClientOptions(var sessionTimeout: js.UndefOr[Int] = js.undefined,
                     var spinDelay: js.UndefOr[Int] = js.undefined,
                     var retries: js.UndefOr[Int] = js.undefined)
